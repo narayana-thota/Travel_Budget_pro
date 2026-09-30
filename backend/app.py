@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 from config.database import get_db_connection
 from routes.auth_routes import auth_bp
+from routes.trip_routes import trip_bp
 
 
 load_dotenv()
@@ -20,6 +21,7 @@ app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=30)
 
 # Register authentication routes
 app.register_blueprint(auth_bp)
+app.register_blueprint(trip_bp)
 
 
 @app.route("/")
