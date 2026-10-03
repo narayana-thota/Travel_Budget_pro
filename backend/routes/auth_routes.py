@@ -114,7 +114,6 @@ def register():
             "error": str(e)
         }), 500
 @auth_bp.route("/api/login", methods=["POST"])
-
 def login():
 
     try:
@@ -153,7 +152,6 @@ def login():
 
         user = cursor.fetchone()
 
-        # Close database connection
         cursor.close()
         connection.close()
 
@@ -169,11 +167,6 @@ def login():
         user_email = user[2]
         stored_password_hash = user[3]
 
-        session.permanent = True
-        session["user_id"] = user_id
-        session["full_name"] = full_name
-        session["email"] = user_email
-
         # Check password
         password_is_correct = check_password_hash(
             stored_password_hash,
@@ -185,6 +178,13 @@ def login():
                 "status": "error",
                 "message": "Invalid email or password."
             }), 401
+
+        # Create Flask session only after
+        # successful password verification
+        session.permanent = True
+        session["user_id"] = user_id
+        session["full_name"] = full_name
+        session["email"] = user_email
 
         # Login successful
         return jsonify({
@@ -208,6 +208,8 @@ def login():
             "message": "Login failed.",
             "error": str(e)
         }), 500
+
+
 @auth_bp.route("/api/logout", methods=["POST"])
 
 def logout():

@@ -509,18 +509,54 @@ def add_expense(trip_id):
                 "message": "Request body is required."
             }), 400
 
+        # Read expense data
+        category_name = data.get("category", "").strip()
         category_id = data.get("category_id")
-        expense_name = data.get("expense_name", "").strip()
+
+        expense_name = data.get(
+            "expense_name",
+            ""
+        ).strip()
+
         amount = data.get("amount")
         expense_date = data.get("expense_date")
-        expense_type = data.get("expense_type", "Planned")
-        description = data.get("description", "").strip()
 
-        # Validate required fields
-        if category_id is None or not expense_name or amount is None or not expense_date:
+        expense_type = data.get(
+            "expense_type",
+            "Planned"
+        )
+
+        description = data.get(
+            "description",
+            ""
+        ).strip()
+
+        # Validate category
+        if not category_name and category_id is None:
             return jsonify({
                 "status": "error",
-                "message": "Category, expense name, amount and expense date are required."
+                "message": "Category is required."
+            }), 400
+
+        # Validate expense name
+        if not expense_name:
+            return jsonify({
+                "status": "error",
+                "message": "Expense name is required."
+            }), 400
+
+        # Validate amount
+        if amount is None:
+            return jsonify({
+                "status": "error",
+                "message": "Expense amount is required."
+            }), 400
+
+        # Validate expense date
+        if not expense_date:
+            return jsonify({
+                "status": "error",
+                "message": "Expense date is required."
             }), 400
 
         # Validate expense type
@@ -530,14 +566,14 @@ def add_expense(trip_id):
                 "message": "Expense type must be Planned or Actual."
             }), 400
 
-        # Validate amount
+        # Convert amount to float
         try:
             amount = float(amount)
 
-            if amount < 0:
+            if amount <= 0:
                 return jsonify({
                     "status": "error",
-                    "message": "Expense amount cannot be negative."
+                    "message": "Expense amount must be greater than 0."
                 }), 400
 
         except (ValueError, TypeError):
@@ -559,12 +595,16 @@ def add_expense(trip_id):
             WHERE id = %s
               AND user_id = %s
             """,
-            (trip_id, user_id)
+            (
+                trip_id,
+                user_id
+            )
         )
 
         trip = cursor.fetchone()
 
         if not trip:
+
             cursor.close()
             connection.close()
 
@@ -573,19 +613,33 @@ def add_expense(trip_id):
                 "message": "Trip not found."
             }), 404
 
-        # Check whether category exists
-        cursor.execute(
-            """
-            SELECT id
-            FROM expense_categories
-            WHERE id = %s
-            """,
-            (category_id,)
-        )
+        # Find expense category
+        if category_id is not None:
+
+            cursor.execute(
+                """
+                SELECT id, category_name
+                FROM expense_categories
+                WHERE id = %s
+                """,
+                (category_id,)
+            )
+
+        else:
+
+            cursor.execute(
+                """
+                SELECT id, category_name
+                FROM expense_categories
+                WHERE category_name = %s
+                """,
+                (category_name,)
+            )
 
         category = cursor.fetchone()
 
         if not category:
+
             cursor.close()
             connection.close()
 
@@ -593,6 +647,10 @@ def add_expense(trip_id):
                 "status": "error",
                 "message": "Expense category not found."
             }), 404
+
+        # Get category information
+        category_id = category[0]
+        category_name = category[1]
 
         # Insert expense
         cursor.execute(
@@ -608,7 +666,15 @@ def add_expense(trip_id):
                 description
             )
             VALUES
-            (%s, %s, %s, %s, %s, %s, %s)
+            (
+                %s,
+                %s,
+                %s,
+                %s,
+                %s,
+                %s,
+                %s
+            )
             """,
             (
                 trip_id,
@@ -621,13 +687,17 @@ def add_expense(trip_id):
             )
         )
 
+        # Save changes
         connection.commit()
 
+        # Get newly created expense ID
         expense_id = cursor.lastrowid
 
+        # Close database resources
         cursor.close()
         connection.close()
 
+        # Return success response
         return jsonify({
             "status": "success",
             "message": "Expense added successfully!",
@@ -635,6 +705,7 @@ def add_expense(trip_id):
                 "id": expense_id,
                 "trip_id": trip_id,
                 "category_id": category_id,
+                "category_name": category_name,
                 "expense_name": expense_name,
                 "amount": amount,
                 "expense_date": expense_date,

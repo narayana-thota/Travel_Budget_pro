@@ -1,0 +1,256 @@
+.create-trip-page {
+    width: 100%;
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+}
+
+.create-trip-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 34px;
+}
+
+.page-eyebrow {
+    margin: 0 0 8px;
+    color: #2f6b5f;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.create-trip-header h1 {
+    margin: 0;
+    color: #171717;
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.1;
+}
+
+.page-description {
+    max-width: 600px;
+    margin: 12px 0 0;
+    color: #777777;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.back-button {
+    border: 1px solid #d8d6cf;
+    background: #ffffff;
+    color: #171717;
+    padding: 11px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.back-button:hover {
+    border-color: #2f6b5f;
+    color: #2f6b5f;
+}
+
+.trip-form {
+    background: #ffffff;
+    border: 1px solid #d8d6cf;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.form-section {
+    padding: 30px;
+    border-bottom: 1px solid #e5e2db;
+}
+
+.section-heading {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.section-heading > span {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #eef5f2;
+    color: #2f6b5f;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.section-heading h2 {
+    margin: 0;
+    color: #171717;
+    font-size: 20px;
+}
+
+.section-heading p {
+    margin: 5px 0 0;
+    color: #777777;
+    font-size: 14px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 30px 1fr;
+    gap: 18px;
+    align-items: end;
+}
+
+.form-grid.two-columns {
+    grid-template-columns: 1fr 1fr;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    color: #3c3c3c;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.form-group input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #d4d0c9;
+    border-radius: 10px;
+    padding: 13px 14px;
+    background: #fff;
+    color: #171717;
+    font: inherit;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input::placeholder {
+    color: #aaa6a0;
+}
+
+.form-group input:focus {
+    border-color: #2f6b5f;
+    box-shadow: 0 0 0 3px rgba(47, 107, 95, 0.1);
+}
+
+.route-arrow {
+    align-self: center;
+    justify-self: center;
+    margin-top: 25px;
+    color: #d99a32;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.budget-input {
+    position: relative;
+}
+
+.budget-input span {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #777777;
+    font-weight: 700;
+}
+
+.budget-input input {
+    padding-left: 34px;
+}
+
+.form-error {
+    margin: 22px 30px 0;
+    padding: 12px 14px;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    background: #fef2f2;
+    color: #991b1b;
+    font-size: 14px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 24px 30px;
+    background: #faf9f6;
+}
+
+.cancel-button,
+.create-button {
+    border-radius: 10px;
+    padding: 12px 20px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.cancel-button {
+    border: 1px solid #d8d6cf;
+    background: #ffffff;
+    color: #555555;
+}
+
+.create-button {
+    border: 1px solid #2f6b5f;
+    background: #2f6b5f;
+    color: #ffffff;
+}
+
+.create-button:hover {
+    background: #24584e;
+}
+
+.create-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+    .create-trip-page {
+        padding: 28px 16px 40px;
+    }
+
+    .create-trip-header {
+        flex-direction: column;
+    }
+
+    .back-button {
+        width: 100%;
+    }
+
+    .form-section {
+        padding: 22px 18px;
+    }
+
+    .form-grid,
+    .form-grid.two-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .route-arrow {
+        display: none;
+    }
+
+    .form-actions {
+        padding: 18px;
+        flex-direction: column-reverse;
+    }
+
+    .cancel-button,
+    .create-button {
+        width: 100%;
+    }
+}
