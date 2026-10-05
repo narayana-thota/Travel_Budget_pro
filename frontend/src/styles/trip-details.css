@@ -1,47 +1,64 @@
-/* =========================================
-   TRIP DETAILS
-========================================= */
+/* =========================================================
+   TRIP DETAILS PAGE
+   ========================================================= */
 
 .trip-details-page {
     width: 100%;
-    max-width: 1180px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 40px 30px 70px;
+    padding: 28px 32px 60px;
+    box-sizing: border-box;
 }
 
+/* =========================================================
+   COMMON VARIABLES
+   ========================================================= */
 
-/* =========================================
+:root {
+    --tbp-white: #FFFFFF;
+    --tbp-dark: #171717;
+    --tbp-secondary: #5F5F5F;
+    --tbp-muted: #8A8A8A;
+    --tbp-border: #E8E5DF;
+    --tbp-light: #F7F6F2;
+    --tbp-gold: #D99A2B;
+    --tbp-gold-light: #F7E9C9;
+    --tbp-green: #2E7467;
+    --tbp-green-light: #E2F0EC;
+    --tbp-red: #B14A4A;
+    --tbp-red-light: #FDECEC;
+    --tbp-radius-sm: 8px;
+    --tbp-radius-md: 12px;
+    --tbp-radius-lg: 16px;
+    --tbp-shadow: 0 4px 18px rgba(25, 25, 25, 0.05);
+}
+
+/* =========================================================
    HEADER
-========================================= */
+   ========================================================= */
 
 .trip-details-header {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 }
 
 .trip-details-back {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-
-    margin-bottom: 24px;
+    gap: 7px;
+    margin-bottom: 18px;
     padding: 0;
-
+    border: none;
     background: transparent;
     color: var(--tbp-secondary);
-
-    font-size: 14px;
-    font-weight: 600;
-
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
     cursor: pointer;
-
-    transition:
-        color 0.2s ease,
-        transform 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .trip-details-back:hover {
     color: var(--tbp-dark);
-    transform: translateX(-2px);
 }
 
 .trip-details-heading {
@@ -53,173 +70,213 @@
 
 .trip-details-eyebrow,
 .section-eyebrow {
-    margin: 0 0 7px;
-
-    color: var(--tbp-green);
-
-    font-size: 11px;
+    margin: 0 0 6px;
+    color: var(--tbp-gold);
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .trip-details-heading h1 {
     margin: 0;
-
     color: var(--tbp-dark);
-
-    font-size: clamp(30px, 4vw, 42px);
-    line-height: 1.1;
-    letter-spacing: -0.035em;
+    font-size: 30px;
+    line-height: 1.15;
+    font-weight: 800;
 }
 
 .trip-details-description {
-    margin: 10px 0 0;
-
+    margin: 7px 0 0;
     color: var(--tbp-muted);
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: 13px;
+    line-height: 1.5;
 }
+
+.trip-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   STATUS BADGE
+   ========================================================= */
 
 .trip-status-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    min-width: 86px;
-    padding: 8px 13px;
-
+    min-height: 34px;
+    padding: 0 12px;
     border-radius: 999px;
-
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .trip-status-badge.planned {
-    background: var(--tbp-warning-bg);
-    color: #8A5A00;
-}
-
-.trip-status-badge.ongoing {
-    background: var(--tbp-success-bg);
-    color: var(--tbp-green);
+    background: var(--tbp-gold-light);
+    color: #9A691A;
 }
 
 .trip-status-badge.completed {
-    background: #EFEFEF;
-    color: var(--tbp-secondary);
+    background: var(--tbp-green-light);
+    color: var(--tbp-green);
 }
 
+.trip-status-badge.cancelled {
+    background: var(--tbp-red-light);
+    color: var(--tbp-red);
+}
 
-/* =========================================
+/* =========================================================
+   DELETE TRIP BUTTON
+   ========================================================= */
+
+.delete-trip-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 36px;
+    padding: 0 13px;
+    border: 1px solid #E3C7C7;
+    border-radius: 8px;
+    background: #FFF8F8;
+    color: #B14A4A;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.delete-trip-button:hover {
+    background: #FDECEC;
+    border-color: #D9AAAA;
+    color: #9F3737;
+    transform: translateY(-1px);
+}
+
+.delete-trip-button:active {
+    transform: translateY(0);
+}
+
+.delete-trip-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =========================================================
    TRIP OVERVIEW
-========================================= */
+   ========================================================= */
 
-.trip-overview-card,
-.budget-progress-card,
-.expenses-card,
-.category-card {
-    position: relative;
-    overflow: hidden;
-
+.trip-overview-card {
+    padding: 24px;
     background: var(--tbp-white);
     border: 1px solid var(--tbp-border);
-    border-radius: var(--tbp-radius-md);
+    border-radius: var(--tbp-radius-lg);
     box-shadow: var(--tbp-shadow);
 }
 
-.trip-overview-card {
-    padding: 30px;
-    margin-bottom: 38px;
-}
-
 .trip-route-section {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) 100px minmax(180px, 1fr);
     align-items: center;
-    gap: 22px;
+    gap: 20px;
 }
 
 .trip-location {
-    min-width: 180px;
+    min-width: 0;
 }
 
 .location-label {
     display: block;
-    margin-bottom: 7px;
-
+    margin-bottom: 8px;
     color: var(--tbp-muted);
-
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 800;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
 }
 
 .location-value {
     display: flex;
     align-items: center;
     gap: 8px;
-
-    color: var(--tbp-dark);
+    color: var(--tbp-secondary);
 }
 
 .location-value svg {
-    color: var(--tbp-green);
-}
-
-.location-value.destination svg {
+    flex-shrink: 0;
     color: var(--tbp-gold);
 }
 
 .location-value strong {
-    font-size: 17px;
+    color: var(--tbp-dark);
+    font-size: 15px;
+    font-weight: 800;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.location-value.destination svg {
+    color: var(--tbp-green);
 }
 
 .route-line {
     display: flex;
     align-items: center;
-    flex: 1;
-    gap: 5px;
-    max-width: 180px;
+    justify-content: center;
+    gap: 7px;
 }
 
 .route-line span {
-    display: block;
     width: 5px;
     height: 5px;
-
     border-radius: 50%;
-    background: var(--tbp-gold);
+    background: var(--tbp-border);
 }
 
-.route-line span:first-child,
-.route-line span:last-child {
-    width: 7px;
-    height: 7px;
+.route-line span:nth-child(2) {
+    width: 45px;
+    height: 1px;
+    border-radius: 0;
+    background: #D8D5CF;
 }
 
 .trip-overview-divider {
     height: 1px;
-    margin: 27px 0;
-
+    margin: 22px 0;
     background: var(--tbp-border);
 }
 
 .trip-meta-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 25px;
+    gap: 20px;
 }
 
 .trip-meta-item {
     display: flex;
     align-items: center;
-    gap: 13px;
+    gap: 12px;
 }
 
 .trip-meta-item > svg {
-    color: var(--tbp-green);
+    flex-shrink: 0;
+    color: var(--tbp-gold);
 }
 
-.trip-meta-item div {
+.trip-meta-item > div {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -227,223 +284,495 @@
 
 .trip-meta-item span {
     color: var(--tbp-muted);
-
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 800;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
 }
 
 .trip-meta-item strong {
     color: var(--tbp-dark);
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 700;
 }
 
-
-/* =========================================
+/* =========================================================
    SECTION HEADINGS
-========================================= */
-
-.budget-summary-section,
-.expenses-section,
-.category-section {
-    margin-bottom: 42px;
-}
+   ========================================================= */
 
 .section-heading {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     gap: 20px;
-
-    margin-bottom: 17px;
+    margin-bottom: 14px;
 }
 
 .section-heading h2 {
     margin: 0;
-
     color: var(--tbp-dark);
-
-    font-size: 23px;
-    letter-spacing: -0.025em;
+    font-size: 18px;
+    line-height: 1.25;
+    font-weight: 800;
 }
 
+.section-heading p:not(.section-eyebrow) {
+    margin: 5px 0 0;
+    color: var(--tbp-muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
 
-/* =========================================
-   BUDGET SUMMARY
-========================================= */
+.financial-overview-section,
+.category-comparison-section,
+.budget-summary-section,
+.expenses-section,
+.analytics-section {
+    margin-top: 30px;
+}
 
-.budget-summary-grid {
+/* =========================================================
+   FINANCIAL OVERVIEW
+   ========================================================= */
+
+.financial-cards-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
-    margin-bottom: 16px;
 }
 
-.budget-card {
+.financial-card {
     position: relative;
     overflow: hidden;
+    min-height: 145px;
+    padding: 20px;
+    border: 1px solid var(--tbp-border);
+    border-radius: var(--tbp-radius-md);
+    background: var(--tbp-white);
+    box-shadow: var(--tbp-shadow);
+}
 
-    padding: 22px;
+.financial-card::after {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    opacity: 0.45;
+}
 
+.planned-card::after {
+    background: var(--tbp-gold-light);
+}
+
+.actual-card::after {
+    background: var(--tbp-green-light);
+}
+
+.financial-card-top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.financial-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+}
+
+.planned-card .financial-card-icon {
+    background: var(--tbp-gold-light);
+    color: var(--tbp-gold);
+}
+
+.actual-card .financial-card-icon {
+    background: var(--tbp-green-light);
+    color: var(--tbp-green);
+}
+
+.financial-card-label {
+    color: var(--tbp-muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.financial-card > strong {
+    position: relative;
+    z-index: 1;
+    display: block;
+    margin-top: 17px;
+    color: var(--tbp-dark);
+    font-size: 25px;
+    line-height: 1;
+    font-weight: 800;
+}
+
+.financial-card > p {
+    position: relative;
+    z-index: 1;
+    margin: 8px 0 0;
+    color: var(--tbp-muted);
+    font-size: 10px;
+}
+
+/* =========================================================
+   CATEGORY COMPARISON
+   ========================================================= */
+
+.category-comparison-card {
+    margin-top: 16px;
+    overflow: hidden;
     background: var(--tbp-white);
     border: 1px solid var(--tbp-border);
     border-radius: var(--tbp-radius-md);
     box-shadow: var(--tbp-shadow);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
 }
 
-.budget-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--tbp-shadow-hover);
+/* COLUMN HEADERS */
+
+.category-comparison-header {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    align-items: center;
+    min-height: 58px;
+    padding: 0 24px;
+    background: #FAF9F6;
+    border-bottom: 1px solid var(--tbp-border);
+}
+
+.comparison-category-heading {
+    color: var(--tbp-dark);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.comparison-amount-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--tbp-secondary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.comparison-heading-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.comparison-heading-dot.planned {
+    background: var(--tbp-gold);
+}
+
+.comparison-heading-dot.actual {
+    background: var(--tbp-green);
+}
+
+/* CATEGORY BODY */
+
+.category-comparison-body {
+    padding: 0 24px;
+}
+
+.category-comparison-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    align-items: center;
+    min-height: 82px;
+    gap: 24px;
+    border-bottom: 1px solid #F0EEE9;
+}
+
+.category-comparison-row:last-child {
+    border-bottom: none;
+}
+
+.comparison-category-name {
+    color: var(--tbp-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.comparison-value-column {
+    min-width: 0;
+}
+
+.comparison-value {
+    margin-bottom: 8px;
+    color: var(--tbp-dark);
+    font-size: 12px;
+    font-weight: 800;
+    text-align: right;
+}
+
+.comparison-track {
+    width: 100%;
+    height: 7px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #ECEAE5;
+}
+
+.comparison-fill {
+    height: 100%;
+    border-radius: inherit;
+    transition: width 0.4s ease;
+}
+
+.comparison-fill.planned {
+    background: var(--tbp-gold);
+}
+
+.comparison-fill.actual {
+    background: var(--tbp-green);
+}
+
+/* TOTAL */
+
+.category-comparison-total {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    align-items: center;
+    gap: 24px;
+    min-height: 62px;
+    padding: 0 24px;
+    background: #FAF9F6;
+    border-top: 1px solid var(--tbp-border);
+}
+
+.category-comparison-total strong {
+    color: var(--tbp-dark);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.category-comparison-total .total-planned {
+    color: var(--tbp-gold);
+    text-align: right;
+}
+
+.category-comparison-total .total-actual {
+    color: var(--tbp-green);
+    text-align: right;
+}
+
+/* LEGEND */
+
+.category-comparison-legend {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 24px;
+    border-top: 1px solid var(--tbp-border);
+}
+
+.category-comparison-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--tbp-secondary);
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.comparison-legend-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.comparison-legend-dot.planned {
+    background: var(--tbp-gold);
+}
+
+.comparison-legend-dot.actual {
+    background: var(--tbp-green);
+}
+
+/* =========================================================
+   BUDGET SUMMARY
+   ========================================================= */
+
+.budget-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.budget-card {
+    padding: 18px;
+    background: var(--tbp-white);
+    border: 1px solid var(--tbp-border);
+    border-radius: var(--tbp-radius-md);
+    box-shadow: var(--tbp-shadow);
 }
 
 .budget-card-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 38px;
-    height: 38px;
-    margin-bottom: 18px;
-
-    border-radius: 10px;
-
-    background: var(--tbp-success-bg);
-    color: var(--tbp-green);
+    width: 34px;
+    height: 34px;
+    margin-bottom: 13px;
+    border-radius: 9px;
+    background: var(--tbp-gold-light);
+    color: var(--tbp-gold);
 }
 
 .budget-card-icon.expenses {
-    background: var(--tbp-warning-bg);
-    color: #9A6700;
+    background: #F1EEE7;
+    color: var(--tbp-secondary);
 }
 
-.budget-card span {
+.budget-card > span {
     display: block;
-
-    margin-bottom: 7px;
-
+    margin-bottom: 5px;
     color: var(--tbp-muted);
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 10px;
+    font-weight: 700;
 }
 
-.budget-card strong {
-    display: block;
-
+.budget-card > strong {
     color: var(--tbp-dark);
-    font-size: 25px;
-    letter-spacing: -0.025em;
+    font-size: 20px;
+    font-weight: 800;
 }
 
-.budget-card.over-budget strong {
-    color: var(--tbp-error);
+.budget-card.remaining .budget-card-icon {
+    background: var(--tbp-green-light);
+    color: var(--tbp-green);
 }
+
+.budget-card.remaining > strong {
+    color: var(--tbp-green);
+}
+
+.budget-card.over-budget .budget-card-icon {
+    background: var(--tbp-red-light);
+    color: var(--tbp-red);
+}
+
+.budget-card.over-budget > strong {
+    color: var(--tbp-red);
+}
+
+/* =========================================================
+   BUDGET PROGRESS
+   ========================================================= */
 
 .budget-progress-card {
-    padding: 23px;
-}
-
-.budget-progress-header,
-.budget-progress-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    margin-top: 14px;
+    padding: 18px 20px;
+    background: var(--tbp-white);
+    border: 1px solid var(--tbp-border);
+    border-radius: var(--tbp-radius-md);
+    box-shadow: var(--tbp-shadow);
 }
 
 .budget-progress-header {
-    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .budget-progress-header span {
     color: var(--tbp-secondary);
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 700;
 }
 
 .budget-progress-header strong {
     color: var(--tbp-dark);
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .budget-progress-track {
     width: 100%;
-    height: 9px;
-
+    height: 8px;
     overflow: hidden;
-
     border-radius: 999px;
-    background: #E9E7E1;
+    background: #ECEAE5;
 }
 
 .budget-progress-fill {
     height: 100%;
-
     border-radius: inherit;
-
     background: var(--tbp-green);
-
     transition: width 0.4s ease;
 }
 
 .budget-progress-fill.over-budget {
-    background: var(--tbp-error);
+    background: var(--tbp-red);
 }
 
 .budget-progress-footer {
-    margin-top: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+}
 
+.budget-progress-footer span {
     color: var(--tbp-muted);
-    font-size: 11px;
+    font-size: 10px;
 }
 
 .budget-warning {
     display: flex;
-    flex-direction: column;
-    gap: 3px;
-
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
     margin-top: 12px;
-    padding: 13px 16px;
-
-    border: 1px solid #F0D9A3;
-    border-radius: 10px;
-
-    background: var(--tbp-warning-bg);
-    color: #765000;
-
-    font-size: 13px;
+    padding: 12px 14px;
+    border: 1px solid #F1D0D0;
+    border-radius: 9px;
+    background: var(--tbp-red-light);
 }
 
 .budget-warning strong {
-    font-size: 13px;
+    color: var(--tbp-red);
+    font-size: 11px;
 }
 
+.budget-warning span {
+    color: #8F5555;
+    font-size: 10px;
+}
 
-/* =========================================
+/* =========================================================
    EXPENSES
-========================================= */
+   ========================================================= */
 
 .add-expense-button,
 .add-expense-empty-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
-
-    padding: 10px 15px;
-
-    border-radius: 9px;
-
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid var(--tbp-dark);
+    border-radius: 8px;
     background: var(--tbp-dark);
     color: var(--tbp-white);
-
-    font-size: 13px;
+    font-family: inherit;
+    font-size: 11px;
     font-weight: 700;
-
     cursor: pointer;
-
     transition:
         background 0.2s ease,
         transform 0.2s ease;
@@ -451,12 +780,16 @@
 
 .add-expense-button:hover,
 .add-expense-empty-button:hover {
-    background: #2B2B2B;
+    background: #333333;
     transform: translateY(-1px);
 }
 
 .expenses-card {
-    min-height: 150px;
+    overflow: hidden;
+    background: var(--tbp-white);
+    border: 1px solid var(--tbp-border);
+    border-radius: var(--tbp-radius-md);
+    box-shadow: var(--tbp-shadow);
 }
 
 .expense-list {
@@ -465,29 +798,22 @@
 
 .expense-row {
     display: grid;
-    grid-template-columns: minmax(220px, 1.5fr) 130px 100px 110px 135px;
+    grid-template-columns: minmax(200px, 1.8fr) 110px 80px 100px 130px;
     align-items: center;
-    gap: 15px;
-
-    padding: 18px 22px;
-
-    border-bottom: 1px solid #ECEAE5;
-
-    transition: background 0.2s ease;
+    gap: 16px;
+    min-height: 72px;
+    padding: 12px 18px;
+    border-bottom: 1px solid #F0EEE9;
 }
 
 .expense-row:last-child {
-    border-bottom: 0;
-}
-
-.expense-row:hover {
-    background: #FBFAF7;
+    border-bottom: none;
 }
 
 .expense-main {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 11px;
     min-width: 0;
 }
 
@@ -495,16 +821,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
+    width: 34px;
+    height: 34px;
     flex-shrink: 0;
-
-    width: 38px;
-    height: 38px;
-
-    border-radius: 10px;
-
-    background: var(--tbp-success-bg);
-    color: var(--tbp-green);
+    border-radius: 9px;
+    background: #F4F1EA;
+    color: var(--tbp-secondary);
 }
 
 .expense-information {
@@ -516,82 +838,80 @@
 
 .expense-information strong {
     overflow: hidden;
-
     color: var(--tbp-dark);
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 700;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .expense-information span {
     color: var(--tbp-muted);
-    font-size: 12px;
+    font-size: 10px;
 }
 
-.expense-date,
+.expense-date {
+    color: var(--tbp-secondary);
+    font-size: 10px;
+}
+
 .expense-type {
     color: var(--tbp-muted);
-    font-size: 12px;
-}
-
-.expense-type {
-    display: inline-flex;
-    width: fit-content;
-
-    padding: 5px 8px;
-
-    border-radius: 6px;
-
-    background: #F1F0EC;
-
-    color: var(--tbp-secondary);
-    font-weight: 600;
+    font-size: 10px;
+    font-weight: 700;
 }
 
 .expense-amount {
     color: var(--tbp-dark);
-    font-size: 14px;
+    font-size: 12px;
     text-align: right;
 }
 
 .expense-actions {
     display: flex;
+    align-items: center;
     justify-content: flex-end;
-    gap: 6px;
+    gap: 7px;
 }
 
 .expense-actions button {
-    padding: 7px 9px;
-
-    border-radius: 7px;
-
+    padding: 6px 8px;
+    border: none;
+    border-radius: 6px;
     background: transparent;
     color: var(--tbp-secondary);
-
-    font-size: 11px;
+    font-family: inherit;
+    font-size: 10px;
     font-weight: 700;
-
     cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
 }
 
 .expense-actions button:hover {
-    background: #F0EFEB;
+    background: #F3F1EC;
     color: var(--tbp-dark);
 }
+
+.expense-actions button:last-child:hover {
+    background: var(--tbp-red-light);
+    color: var(--tbp-red);
+}
+
+.expense-actions button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   EMPTY EXPENSE STATE
+   ========================================================= */
 
 .expenses-empty {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    min-height: 280px;
-    padding: 35px;
-
+    min-height: 230px;
+    padding: 30px;
     text-align: center;
 }
 
@@ -599,455 +919,452 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 50px;
-    height: 50px;
-    margin-bottom: 14px;
-
-    border-radius: 14px;
-
-    background: var(--tbp-success-bg);
-    color: var(--tbp-green);
+    width: 48px;
+    height: 48px;
+    margin-bottom: 13px;
+    border-radius: 12px;
+    background: #F4F1EA;
+    color: var(--tbp-secondary);
 }
 
 .expenses-empty h3 {
-    margin: 0 0 6px;
-
+    margin: 0;
     color: var(--tbp-dark);
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .expenses-empty p {
-    max-width: 380px;
-    margin: 0 0 18px;
-
+    max-width: 330px;
+    margin: 7px 0 15px;
     color: var(--tbp-muted);
-    font-size: 13px;
-    line-height: 1.6;
+    font-size: 11px;
+    line-height: 1.5;
 }
 
+/* =========================================================
+   ANALYTICS
+   ========================================================= */
 
-/* =========================================
-   CATEGORY BREAKDOWN
-========================================= */
-
-.category-card {
-    padding: 24px;
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
 }
 
-.category-list {
+.analytics-card {
+    min-width: 0;
+    padding: 20px;
+    background: var(--tbp-white);
+    border: 1px solid var(--tbp-border);
+    border-radius: var(--tbp-radius-md);
+    box-shadow: var(--tbp-shadow);
+}
+
+.analytics-card-heading {
     display: flex;
-    flex-direction: column;
-    gap: 19px;
-}
-
-.category-row {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.category-row-header {
-    display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 15px;
+    margin-bottom: 20px;
 }
 
-.category-row-header span {
-    color: var(--tbp-secondary);
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.category-row-header strong {
-    color: var(--tbp-dark);
-    font-size: 13px;
-}
-
-.category-progress {
-    width: 100%;
-    height: 7px;
-
-    overflow: hidden;
-
-    border-radius: 999px;
-
-    background: #ECEAE5;
-}
-
-.category-progress div {
-    height: 100%;
-
-    border-radius: inherit;
-
-    background: var(--tbp-green);
-
-    transition: width 0.4s ease;
-}
-
-.category-empty {
+.analytics-card-heading h3 {
     margin: 0;
-
-    color: var(--tbp-muted);
-    font-size: 13px;
-    line-height: 1.6;
+    color: var(--tbp-dark);
+    font-size: 14px;
+    font-weight: 800;
 }
 
+.analytics-card-heading p {
+    margin: 5px 0 0;
+    color: var(--tbp-muted);
+    font-size: 10px;
+    line-height: 1.4;
+}
 
-/* =========================================
-   LOADING / ERROR
-========================================= */
-
-.trip-details-loading,
-.trip-details-error {
+.analytics-empty {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    min-height: 500px;
-
+    min-height: 170px;
+    color: var(--tbp-muted);
+    font-size: 11px;
     text-align: center;
 }
 
-.loading-spinner {
+/* =========================================================
+   DONUT CHART
+   ========================================================= */
+
+.donut-layout {
+    display: grid;
+    grid-template-columns: 155px minmax(0, 1fr);
+    align-items: center;
+    gap: 25px;
+    min-height: 190px;
+}
+
+.expense-donut {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 48px;
-    height: 48px;
-    margin-bottom: 14px;
-
-    border-radius: 14px;
-
-    background: var(--tbp-success-bg);
-    color: var(--tbp-green);
-
-    animation: spinIcon 1.2s linear infinite;
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
 }
 
-.trip-details-loading p {
-    margin: 0;
-
-    color: var(--tbp-muted);
-    font-size: 14px;
+.expense-donut::before {
+    content: "";
+    position: absolute;
+    inset: 23px;
+    border-radius: 50%;
+    background: var(--tbp-white);
 }
 
-@keyframes spinIcon {
-    to {
-        transform: rotate(360deg);
-    }
+.expense-donut-center {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.trip-details-error {
-    padding: 30px;
-}
-
-.trip-details-error h2 {
-    margin: 0 0 8px;
-
+.expense-donut-center strong {
     color: var(--tbp-dark);
+    font-size: 13px;
+    font-weight: 800;
 }
 
-.trip-details-error p {
-    max-width: 420px;
-    margin: 0;
-
+.expense-donut-center span {
+    margin-top: 3px;
     color: var(--tbp-muted);
-    line-height: 1.6;
+    font-size: 9px;
 }
 
-.trip-error-actions {
+.donut-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.donut-legend-item {
+    display: grid;
+    grid-template-columns: 8px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+}
+
+.chart-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+
+.chart-dot-1 {
+    background: var(--chart-1, #D99A2B);
+}
+
+.chart-dot-2 {
+    background: var(--chart-2, #2E7467);
+}
+
+.chart-dot-3 {
+    background: var(--chart-3, #6D8EAA);
+}
+
+.chart-dot-4 {
+    background: var(--chart-4, #A57B65);
+}
+
+.chart-dot-5 {
+    background: var(--chart-5, #8A7BAF);
+}
+
+.chart-dot-6 {
+    background: var(--chart-6, #7B9B72);
+}
+
+.chart-dot-7 {
+    background: var(--chart-7, #A98A54);
+}
+
+.donut-legend-item > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.donut-legend-item > div strong {
+    overflow: hidden;
+    color: var(--tbp-dark);
+    font-size: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.donut-legend-item > div span {
+    color: var(--tbp-muted);
+    font-size: 9px;
+}
+
+.donut-legend-item > b {
+    color: var(--tbp-secondary);
+    font-size: 10px;
+}
+
+/* =========================================================
+   PLANNED VS ACTUAL ANALYTICS
+   ========================================================= */
+
+.planned-actual-content {
+    min-height: 190px;
+}
+
+.planned-actual-total {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.planned-actual-total > div {
+    padding: 12px;
+    border: 1px solid var(--tbp-border);
+    border-radius: 9px;
+    background: #FAF9F6;
+}
+
+.planned-actual-total span {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--tbp-muted);
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.planned-actual-total strong {
+    color: var(--tbp-dark);
+    font-size: 15px;
+}
+
+.planned-actual-total > div:first-child strong {
+    color: var(--tbp-gold);
+}
+
+.planned-actual-total > div:last-child strong {
+    color: var(--tbp-green);
+}
+
+.comparison-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.comparison-row {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.comparison-label {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
-
-    margin-top: 22px;
 }
 
-.trip-retry-button,
-.trip-back-button {
+.comparison-label span {
+    color: var(--tbp-secondary);
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.comparison-label strong {
+    color: var(--tbp-dark);
+    font-size: 10px;
+}
+
+.comparison-track {
+    width: 100%;
+    height: 7px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #ECEAE5;
+}
+
+.comparison-fill {
+    height: 100%;
+    border-radius: inherit;
+    transition: width 0.4s ease;
+}
+
+.comparison-fill.planned {
+    background: var(--tbp-gold);
+}
+
+.comparison-fill.actual {
+    background: var(--tbp-green);
+}
+
+.analytics-insight {
+    margin-top: 20px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #F7F6F2;
+    color: var(--tbp-secondary);
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   SPENDING TREND
+   ========================================================= */
+
+.spending-trend-card {
+    margin-top: 16px;
+}
+
+.trend-total {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-
-    padding: 10px 15px;
-
-    border-radius: 9px;
-
-    font-size: 13px;
+    min-height: 26px;
+    padding: 0 9px;
+    border-radius: 999px;
+    background: #F4F1EA;
+    color: var(--tbp-secondary);
+    font-size: 9px;
     font-weight: 700;
-
-    cursor: pointer;
 }
 
-.trip-retry-button {
-    background: var(--tbp-dark);
-    color: var(--tbp-white);
+.trend-chart {
+    display: grid;
+    grid-template-columns: 75px minmax(0, 1fr);
+    min-height: 270px;
 }
 
-.trip-back-button {
-    border: 1px solid var(--tbp-border);
-    background: var(--tbp-white);
-    color: var(--tbp-dark);
+.trend-y-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4px 10px 30px 0;
 }
 
+.trend-y-labels span {
+    color: var(--tbp-muted);
+    font-size: 9px;
+    text-align: right;
+}
 
-/* =========================================
-   CARD SHINE
-========================================= */
+.trend-visual {
+    position: relative;
+    min-width: 0;
+    padding-bottom: 30px;
+}
 
-.trip-overview-card::after,
-.budget-card::after,
-.budget-progress-card::after,
-.expenses-card::after,
-.category-card::after {
-    content: "";
-
+.trend-grid-line {
     position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #EEECE7;
+}
+
+.trend-grid-line.top {
     top: 0;
-    left: -120%;
+}
 
-    width: 55%;
+.trend-grid-line.middle {
+    top: 50%;
+}
+
+.trend-grid-line.bottom {
+    bottom: 30px;
+}
+
+.trend-bars {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: 10px;
     height: 100%;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.35),
-        transparent
-    );
-
-    transform: skewX(-20deg);
-
-    pointer-events: none;
+    min-height: 240px;
+    padding: 0 8px;
 }
 
-.trip-overview-card:hover::after,
-.budget-card:hover::after,
-.budget-progress-card:hover::after,
-.expenses-card:hover::after,
-.category-card:hover::after {
-    animation: tripDetailsCardShine 0.7s ease;
+.trend-column {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 35px;
+    height: 100%;
 }
 
-@keyframes tripDetailsCardShine {
-    from {
-        left: -120%;
-    }
-
-    to {
-        left: 140%;
-    }
+.trend-value {
+    margin-bottom: 5px;
+    color: var(--tbp-secondary);
+    font-size: 8px;
+    font-weight: 700;
+    white-space: nowrap;
 }
 
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
-@media (max-width: 1000px) {
-
-    .expense-row {
-        grid-template-columns: minmax(180px, 1.5fr) 110px 90px 100px;
-    }
-
-    .expense-actions {
-        grid-column: 4;
-    }
+.trend-bar-track {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    max-width: 42px;
+    height: 190px;
 }
 
-
-@media (max-width: 800px) {
-
-    .trip-details-page {
-        padding: 30px 22px 55px;
-    }
-
-    .budget-summary-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .trip-route-section {
-        flex-wrap: wrap;
-    }
-
-    .route-line {
-        max-width: 80px;
-    }
-
-    .expense-row {
-        grid-template-columns: 1fr auto;
-        gap: 12px;
-    }
-
-    .expense-date {
-        grid-column: 1;
-        padding-left: 50px;
-    }
-
-    .expense-type {
-        grid-column: 1;
-        margin-left: 50px;
-    }
-
-    .expense-amount {
-        grid-column: 2;
-        grid-row: 1 / span 3;
-    }
-
-    .expense-actions {
-        grid-column: 1 / -1;
-        justify-content: flex-start;
-        padding-left: 50px;
-    }
+.trend-bar {
+    width: 22px;
+    min-height: 5px;
+    border-radius: 5px 5px 2px 2px;
+    background: var(--tbp-gold);
+    transition: height 0.4s ease;
 }
 
-
-@media (max-width: 600px) {
-
-    .trip-details-page {
-        padding: 24px 16px 45px;
-    }
-
-    .trip-details-heading {
-        flex-direction: column;
-        gap: 14px;
-    }
-
-    .trip-details-heading h1 {
-        font-size: 30px;
-    }
-
-    .trip-status-badge {
-        align-self: flex-start;
-    }
-
-    .trip-overview-card {
-        padding: 22px;
-    }
-
-    .trip-route-section {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .route-line {
-        display: none;
-    }
-
-    .trip-meta-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-    }
-
-    .section-heading {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .add-expense-button {
-        width: 100%;
-    }
-
-    .expense-row {
-        padding: 16px;
-    }
-
-    .expense-date,
-    .expense-type,
-    .expense-actions {
-        padding-left: 50px;
-    }
-
-    .expense-amount {
-        font-size: 13px;
-    }
-
-    .trip-error-actions {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .trip-retry-button,
-    .trip-back-button {
-        width: 100%;
-        justify-content: center;
-    }
+.trend-column > span {
+    margin-top: 9px;
+    color: var(--tbp-muted);
+    font-size: 8px;
+    white-space: nowrap;
 }
 
-
-@media (max-width: 400px) {
-
-    .trip-details-page {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
-    .trip-overview-card,
-    .budget-progress-card,
-    .category-card {
-        padding: 18px;
-    }
-
-    .budget-card {
-        padding: 18px;
-    }
-
-    .expense-main {
-        gap: 9px;
-    }
-
-    .expense-category-icon {
-        width: 34px;
-        height: 34px;
-    }
-
-    .expense-date,
-    .expense-type,
-    .expense-actions {
-        padding-left: 43px;
-    }
-}
-/* =========================================
+/* =========================================================
    ADD EXPENSE MODAL
-========================================= */
+   ========================================================= */
 
 .expense-modal-overlay {
     position: fixed;
-    inset: 0;
     z-index: 1000;
-
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 24px;
-
-    background: rgba(23, 23, 23, 0.42);
-
+    background: rgba(20, 20, 20, 0.48);
     backdrop-filter: blur(3px);
-
-    animation: expenseOverlayIn 0.2s ease;
 }
 
 .expense-modal {
     width: 100%;
-    max-width: 650px;
+    max-width: 560px;
     max-height: calc(100vh - 48px);
-
     overflow-y: auto;
-
-    background: var(--tbp-white);
     border: 1px solid var(--tbp-border);
-    border-radius: 18px;
-
-    box-shadow: 0 24px 70px rgba(23, 23, 23, 0.18);
-
-    animation: expenseModalIn 0.22s ease;
+    border-radius: 16px;
+    background: var(--tbp-white);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
 }
 
 .expense-modal-header {
@@ -1055,92 +1372,66 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 20px;
-
-    padding: 25px 27px 20px;
-
+    padding: 22px 24px 18px;
     border-bottom: 1px solid var(--tbp-border);
 }
 
 .expense-modal-header h2 {
     margin: 0;
-
     color: var(--tbp-dark);
-
-    font-size: 24px;
-    letter-spacing: -0.025em;
+    font-size: 19px;
+    font-weight: 800;
 }
 
-.expense-modal-header p:last-child {
-    margin: 7px 0 0;
-
+.expense-modal-header > div > p:last-child {
+    margin: 5px 0 0;
     color: var(--tbp-muted);
-
-    font-size: 13px;
-    line-height: 1.5;
+    font-size: 10px;
 }
 
 .expense-modal-close {
     display: flex;
     align-items: center;
     justify-content: center;
-
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
-
-    width: 36px;
-    height: 36px;
-
-    border-radius: 9px;
-
-    background: #F3F2EE;
+    border: none;
+    border-radius: 8px;
+    background: #F4F2EE;
     color: var(--tbp-secondary);
-
     cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
 }
 
 .expense-modal-close:hover {
-    background: #EAE8E2;
+    background: #ECEAE5;
     color: var(--tbp-dark);
 }
 
 .expense-modal-close:disabled {
-    cursor: not-allowed;
     opacity: 0.5;
+    cursor: not-allowed;
 }
 
-
-/* =========================================
+/* =========================================================
    EXPENSE FORM
-========================================= */
+   ========================================================= */
 
 .expense-form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-
-    padding: 25px 27px 27px;
-}
-
-.expense-form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 17px;
+    padding: 22px 24px 24px;
 }
 
 .expense-form-group {
     display: flex;
     flex-direction: column;
     gap: 7px;
+    margin-bottom: 16px;
 }
 
 .expense-form-group label {
     color: var(--tbp-dark);
-
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 10px;
+    font-weight: 800;
 }
 
 .expense-form-group label span {
@@ -1152,18 +1443,14 @@
 .expense-form-group select,
 .expense-form-group textarea {
     width: 100%;
-
-    border: 1px solid var(--tbp-input-border);
-    border-radius: 9px;
-
+    box-sizing: border-box;
+    border: 1px solid #DDD9D1;
+    border-radius: 8px;
+    outline: none;
     background: var(--tbp-white);
     color: var(--tbp-dark);
-
     font-family: inherit;
-    font-size: 13px;
-
-    outline: none;
-
+    font-size: 11px;
     transition:
         border-color 0.2s ease,
         box-shadow 0.2s ease;
@@ -1171,43 +1458,40 @@
 
 .expense-form-group input,
 .expense-form-group select {
-    height: 44px;
-    padding: 0 12px;
+    height: 40px;
+    padding: 0 11px;
 }
 
 .expense-form-group textarea {
-    min-height: 88px;
-    padding: 11px 12px;
-
+    min-height: 85px;
+    padding: 10px 11px;
     resize: vertical;
-    line-height: 1.5;
 }
 
 .expense-form-group input::placeholder,
 .expense-form-group textarea::placeholder {
-    color: #A09E98;
+    color: #B3B0AA;
 }
 
 .expense-form-group input:focus,
 .expense-form-group select:focus,
 .expense-form-group textarea:focus {
-    border-color: var(--tbp-green);
-
-    box-shadow:
-        0 0 0 3px rgba(47, 107, 95, 0.09);
+    border-color: var(--tbp-gold);
+    box-shadow: 0 0 0 3px rgba(217, 154, 43, 0.1);
 }
 
 .expense-form-group input:disabled,
 .expense-form-group select:disabled,
 .expense-form-group textarea:disabled {
-    background: #F5F4F0;
+    opacity: 0.6;
     cursor: not-allowed;
 }
 
-
-/* =========================================
-   AMOUNT INPUT
-========================================= */
+.expense-form-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
 
 .amount-input-wrapper {
     position: relative;
@@ -1215,205 +1499,528 @@
 
 .amount-input-wrapper > span {
     position: absolute;
-    left: 12px;
     top: 50%;
-
-    transform: translateY(-50%);
-
+    left: 11px;
+    z-index: 1;
     color: var(--tbp-secondary);
-
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 700;
-
-    pointer-events: none;
+    transform: translateY(-50%);
 }
 
 .amount-input-wrapper input {
-    padding-left: 30px;
+    padding-left: 27px;
 }
-
-
-/* =========================================
-   RADIO OPTIONS
-========================================= */
-
-.expense-type-options {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-
-    min-height: 44px;
-}
-
-.radio-option {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-
-    cursor: pointer;
-}
-
-.radio-option input {
-    width: 15px;
-    height: 15px;
-
-    accent-color: var(--tbp-green);
-
-    cursor: pointer;
-}
-
-.radio-option span {
-    color: var(--tbp-secondary);
-
-    font-size: 13px;
-    font-weight: 600;
-}
-
-
-/* =========================================
-   FORM ERROR
-========================================= */
 
 .expense-form-error {
-    padding: 11px 13px;
-
-    border: 1px solid #F1CACA;
+    margin-bottom: 15px;
+    padding: 10px 12px;
+    border: 1px solid #F1D0D0;
     border-radius: 8px;
-
-    background: var(--tbp-error-bg);
-    color: var(--tbp-error);
-
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 1.5;
+    background: var(--tbp-red-light);
+    color: var(--tbp-red);
+    font-size: 10px;
+    line-height: 1.4;
 }
-
-
-/* =========================================
-   FORM ACTIONS
-========================================= */
 
 .expense-form-actions {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 9px;
-
-    margin-top: 4px;
-    padding-top: 19px;
-
-    border-top: 1px solid var(--tbp-border);
+    padding-top: 4px;
 }
 
 .expense-cancel-button,
 .expense-submit-button {
-    min-width: 105px;
-    height: 42px;
-
-    padding: 0 16px;
-
-    border-radius: 9px;
-
+    min-height: 38px;
+    padding: 0 15px;
+    border-radius: 8px;
     font-family: inherit;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
-
     cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        opacity 0.2s ease;
 }
 
 .expense-cancel-button {
     border: 1px solid var(--tbp-border);
-
     background: var(--tbp-white);
-    color: var(--tbp-dark);
+    color: var(--tbp-secondary);
 }
 
 .expense-cancel-button:hover {
-    background: #F5F4F0;
+    background: #F7F6F2;
 }
 
 .expense-submit-button {
+    border: 1px solid var(--tbp-dark);
     background: var(--tbp-dark);
     color: var(--tbp-white);
 }
 
 .expense-submit-button:hover {
-    background: #2B2B2B;
-    transform: translateY(-1px);
+    background: #333333;
 }
 
 .expense-cancel-button:disabled,
 .expense-submit-button:disabled {
     opacity: 0.55;
     cursor: not-allowed;
-    transform: none;
 }
 
+/* =========================================================
+   LOADING
+   ========================================================= */
 
-/* =========================================
-   MODAL ANIMATION
-========================================= */
+.trip-details-loading {
+    display: flex;
+    min-height: 420px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
 
-@keyframes expenseOverlayIn {
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #F4F1EA;
+    color: var(--tbp-gold);
+}
+
+.loading-spinner svg {
+    animation: trip-spin 1s linear infinite;
+}
+
+.trip-details-loading p {
+    margin: 0;
+    color: var(--tbp-muted);
+    font-size: 11px;
+}
+
+@keyframes trip-spin {
     from {
-        opacity: 0;
+        transform: rotate(0deg);
     }
 
     to {
-        opacity: 1;
+        transform: rotate(360deg);
     }
 }
 
-@keyframes expenseModalIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px) scale(0.985);
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.trip-details-error {
+    display: flex;
+    min-height: 420px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    text-align: center;
+}
+
+.trip-details-error h2 {
+    margin: 0;
+    color: var(--tbp-dark);
+    font-size: 20px;
+}
+
+.trip-details-error p {
+    max-width: 420px;
+    margin: 8px 0 18px;
+    color: var(--tbp-muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.trip-error-actions {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.trip-retry-button,
+.trip-back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 0 13px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.trip-retry-button {
+    gap: 7px;
+    border: 1px solid var(--tbp-dark);
+    background: var(--tbp-dark);
+    color: var(--tbp-white);
+}
+
+.trip-back-button {
+    border: 1px solid var(--tbp-border);
+    background: var(--tbp-white);
+    color: var(--tbp-secondary);
+}
+
+/* =========================================================
+   RESPONSIVE - 1000px
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .trip-details-page {
+        padding: 24px 22px 50px;
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+    .expense-row {
+        grid-template-columns: minmax(180px, 1.5fr) 100px 70px 90px;
+    }
+
+    .expense-actions {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        padding-top: 2px;
+    }
+
+    .donut-layout {
+        grid-template-columns: 135px minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .expense-donut {
+        width: 125px;
+        height: 125px;
+    }
+
+    .expense-donut::before {
+        inset: 20px;
     }
 }
 
+/* =========================================================
+   RESPONSIVE - 800px
+   ========================================================= */
 
-/* =========================================
-   MODAL RESPONSIVE
-========================================= */
+@media (max-width: 800px) {
 
-@media (max-width: 650px) {
+    .trip-details-heading {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .trip-header-actions {
+        justify-content: space-between;
+    }
+
+    .financial-cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .budget-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trip-route-section {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .route-line {
+        justify-content: flex-start;
+        padding-left: 6px;
+    }
+
+    .route-line span:nth-child(2) {
+        width: 35px;
+    }
+
+    .trip-meta-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .expense-row {
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+    }
+
+    .expense-main {
+        grid-column: 1;
+    }
+
+    .expense-date {
+        grid-column: 2;
+        grid-row: 1;
+        text-align: right;
+    }
+
+    .expense-type {
+        grid-column: 1;
+    }
+
+    .expense-amount {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .expense-actions {
+        grid-column: 1 / -1;
+    }
+
+    .donut-layout {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .donut-legend {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE - 700px
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .trip-details-page {
+        padding: 20px 15px 45px;
+    }
+
+    .trip-details-heading h1 {
+        font-size: 24px;
+    }
+
+    .trip-overview-card,
+    .financial-card,
+    .analytics-card,
+    .budget-progress-card {
+        padding: 17px;
+    }
+
+    .category-comparison-header,
+    .category-comparison-row,
+    .category-comparison-total {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .category-comparison-header {
+        min-height: auto;
+        gap: 10px;
+        padding: 14px 18px;
+    }
+
+    .comparison-category-heading {
+        grid-column: 1 / -1;
+    }
+
+    .comparison-amount-heading {
+        display: none;
+    }
+
+    .category-comparison-body {
+        padding: 0 18px;
+    }
+
+    .category-comparison-row {
+        gap: 14px;
+        padding: 16px 0;
+    }
+
+    .comparison-category-name {
+        grid-column: 1 / -1;
+    }
+
+    .comparison-value-column {
+        grid-column: span 1;
+    }
+
+    .comparison-value-column::before {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--tbp-muted);
+        font-size: 9px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .comparison-value-column:first-of-type::before {
+        content: "Planned";
+    }
+
+    .comparison-value-column:last-of-type::before {
+        content: "Actual";
+    }
+
+    .comparison-value {
+        text-align: left;
+    }
+
+    .category-comparison-total {
+        gap: 14px;
+        padding: 14px 18px;
+    }
+
+    .category-comparison-total strong:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .category-comparison-total .total-planned,
+    .category-comparison-total .total-actual {
+        text-align: left;
+    }
+
+    .category-comparison-legend {
+        padding: 13px 18px;
+    }
+
+    .budget-warning {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .add-expense-button {
+        width: 100%;
+    }
+
+    .expense-row {
+        padding: 14px;
+    }
+
+    .trend-chart {
+        grid-template-columns: 52px minmax(0, 1fr);
+    }
+
+    .trend-bars {
+        gap: 5px;
+        padding: 0 3px;
+    }
+
+    .trend-bar {
+        width: 16px;
+    }
+
+    .trend-value {
+        font-size: 7px;
+    }
+
+    .trend-column > span {
+        font-size: 7px;
+        transform: rotate(-35deg);
+        transform-origin: center top;
+    }
 
     .expense-modal-overlay {
         align-items: flex-end;
-
         padding: 0;
     }
 
     .expense-modal {
-        max-height: 94vh;
-
-        border-radius: 18px 18px 0 0;
-    }
-
-    .expense-modal-header {
-        padding: 22px 20px 18px;
-    }
-
-    .expense-form {
-        padding: 21px 20px 23px;
+        max-height: 92vh;
+        border-radius: 16px 16px 0 0;
     }
 
     .expense-form-row {
         grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE - 500px
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .trip-header-actions {
+        width: 100%;
+        justify-content: space-between;
     }
 
-    .expense-type-options {
-        min-height: 44px;
+    .delete-trip-button {
+        min-height: 34px;
+        padding: 0 11px;
+    }
+
+    .trip-status-badge {
+        min-height: 32px;
+        padding: 0 10px;
+    }
+
+    .trip-overview-card {
+        padding: 16px;
+    }
+
+    .location-value strong {
+        font-size: 13px;
+    }
+
+    .financial-card > strong {
+        font-size: 22px;
+    }
+
+    .budget-card > strong {
+        font-size: 18px;
+    }
+
+    .planned-actual-total {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-card {
+        padding: 15px;
+    }
+
+    .expense-row {
+        grid-template-columns: 1fr;
+    }
+
+    .expense-main,
+    .expense-date,
+    .expense-type,
+    .expense-amount,
+    .expense-actions {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .expense-date,
+    .expense-amount {
+        text-align: left;
+    }
+
+    .expense-actions {
+        justify-content: flex-start;
+    }
+
+    .expense-form {
+        padding: 18px;
+    }
+
+    .expense-modal-header {
+        padding: 18px;
     }
 
     .expense-form-actions {
@@ -1426,706 +2033,71 @@
     }
 }
 
-/* =========================================
-   EXPENSE ANALYTICS
-========================================= */
+/* =========================================================
+   SMALL SCREEN CATEGORY COMPARISON
+   ========================================================= */
 
-.analytics-section {
-    margin-bottom: 42px;
-    --chart-1: #2F6B5F;
-    --chart-2: #D99A32;
-    --chart-3: #5C7C89;
-    --chart-4: #9B6A8B;
-    --chart-5: #C76B52;
-    --chart-6: #6E8F5D;
-    --chart-7: #77736B;
+@media (max-width: 380px) {
+
+    .category-comparison-header {
+        padding: 13px 14px;
+    }
+
+    .category-comparison-body {
+        padding: 0 14px;
+    }
+
+    .category-comparison-total {
+        padding: 13px 14px;
+    }
+
+    .category-comparison-legend {
+        padding: 12px 14px;
+    }
+
+    .comparison-value {
+        font-size: 11px;
+    }
+
+    .comparison-category-name {
+        font-size: 12px;
+    }
 }
-
-.analytics-grid {
-    display: grid;
-    grid-template-columns: 1.12fr 0.88fr;
-    gap: 16px;
-    margin-bottom: 16px;
-}
-
-.analytics-card {
-    position: relative;
-    overflow: hidden;
-    background: var(--tbp-white);
-    border: 1px solid var(--tbp-border);
-    border-radius: var(--tbp-radius-md);
-    box-shadow: var(--tbp-shadow);
-    padding: 24px;
-}
-
-.analytics-card::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 55%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-    transform: skewX(-20deg);
-    pointer-events: none;
-}
-
-.analytics-card:hover::after {
-    animation: tripDetailsCardShine 0.7s ease;
-}
-
-.analytics-card-heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 22px;
-}
-
-.analytics-card-heading h3 {
-    margin: 0;
-    color: var(--tbp-dark);
-    font-size: 17px;
-    letter-spacing: -0.02em;
-}
-
-.analytics-card-heading p {
-    margin: 5px 0 0;
-    color: var(--tbp-muted);
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-.analytics-empty {
-    min-height: 190px;
-    display: flex;
+.cancel-trip-button {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 25px;
-    border: 1px dashed var(--tbp-border);
-    border-radius: 12px;
-    color: var(--tbp-muted);
-    font-size: 13px;
-    text-align: center;
-}
-
-.donut-layout {
-    display: grid;
-    grid-template-columns: 190px minmax(0, 1fr);
-    align-items: center;
-    gap: 28px;
-    min-height: 245px;
-}
-
-.expense-donut {
-    position: relative;
-    width: 185px;
-    height: 185px;
-    margin: 0 auto;
-    border-radius: 50%;
-    --chart-1: #2F6B5F;
-    --chart-2: #D99A32;
-    --chart-3: #5C7C89;
-    --chart-4: #9B6A8B;
-    --chart-5: #C76B52;
-    --chart-6: #6E8F5D;
-    --chart-7: #77736B;
-    box-shadow: inset 0 0 0 1px rgba(23,23,23,0.04);
-}
-
-.expense-donut::before {
-    content: "";
-    position: absolute;
-    inset: 18px;
-    border-radius: 50%;
-    background: var(--tbp-white);
-}
-
-.expense-donut-center {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.expense-donut-center strong {
-    max-width: 115px;
-    overflow: hidden;
-    color: var(--tbp-dark);
-    font-size: 19px;
-    letter-spacing: -0.03em;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.expense-donut-center span {
-    margin-top: 3px;
-    color: var(--tbp-muted);
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-}
-
-.donut-legend {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-height: 245px;
-    overflow-y: auto;
-    padding-right: 3px;
-}
-
-.donut-legend-item {
-    display: grid;
-    grid-template-columns: 9px minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 9px;
-}
-
-.donut-legend-item > div {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-}
-
-.donut-legend-item strong {
-    overflow: hidden;
-    color: var(--tbp-secondary);
-    font-size: 12px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.donut-legend-item div span {
-    color: var(--tbp-muted);
-    font-size: 10px;
-}
-
-.donut-legend-item b {
-    color: var(--tbp-dark);
-    font-size: 12px;
-    white-space: nowrap;
-}
-
-.chart-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-}
-
-.chart-dot-1 { background: var(--chart-1); }
-.chart-dot-2 { background: var(--chart-2); }
-.chart-dot-3 { background: var(--chart-3); }
-.chart-dot-4 { background: var(--chart-4); }
-.chart-dot-5 { background: var(--chart-5); }
-.chart-dot-6 { background: var(--chart-6); }
-.chart-dot-7 { background: var(--chart-7); }
-
-.planned-actual-content {
-    min-height: 245px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.planned-actual-total {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 25px;
-}
-
-.planned-actual-total > div {
-    padding: 14px;
-    border-radius: 12px;
-    background: #F8F7F3;
-    border: 1px solid #ECEAE5;
-}
-
-.planned-actual-total span {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--tbp-muted);
-    font-size: 11px;
-    font-weight: 700;
-}
-
-.planned-actual-total strong {
-    color: var(--tbp-dark);
-    font-size: 18px;
-}
-
-.comparison-bars {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.comparison-row {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.comparison-label {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.comparison-label span {
-    color: var(--tbp-secondary);
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.comparison-label strong {
-    color: var(--tbp-dark);
-    font-size: 12px;
-}
-
-.comparison-track {
-    width: 100%;
-    height: 10px;
-    overflow: hidden;
-    border-radius: 999px;
-    background: #ECEAE5;
-}
-
-.comparison-fill {
-    height: 100%;
-    border-radius: inherit;
-    transition: width 0.45s ease;
-}
-
-.comparison-fill.planned { background: var(--tbp-gold); }
-.comparison-fill.actual { background: var(--tbp-green); }
-
-.analytics-insight {
-    margin-top: 22px;
-    padding: 11px 13px;
-    border-radius: 9px;
-    background: var(--tbp-success-bg);
-    color: var(--tbp-green);
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 1.5;
-}
-
-.spending-trend-card {
-    padding-bottom: 27px;
-}
-
-.trend-total {
-    flex-shrink: 0;
-    padding: 6px 9px;
-    border-radius: 999px;
-    background: #F2F1EC;
-    color: var(--tbp-secondary);
-    font-size: 10px;
-    font-weight: 700;
-}
-
-.trend-chart {
-    display: grid;
-    grid-template-columns: 65px minmax(0, 1fr);
-    min-height: 270px;
-}
-
-.trend-y-labels {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 4px 10px 31px 0;
-    color: var(--tbp-muted);
-    font-size: 10px;
-    text-align: right;
-}
-
-.trend-visual {
-    position: relative;
-    min-width: 0;
-    height: 245px;
-    border-bottom: 1px solid var(--tbp-border);
-}
-
-.trend-grid-line {
-    position: absolute;
-    left: 0;
-    right: 0;
-    border-top: 1px dashed #E5E3DD;
-}
-
-.trend-grid-line.top { top: 0; }
-.trend-grid-line.middle { top: 50%; }
-.trend-grid-line.bottom { bottom: 0; }
-
-.trend-bars {
-    position: absolute;
-    inset: 0 4px 0 4px;
-    display: flex;
-    align-items: stretch;
-    justify-content: space-around;
-    gap: 10px;
-}
-
-.trend-column {
-    position: relative;
-    flex: 1;
-    min-width: 30px;
-    max-width: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.trend-value {
-    position: absolute;
-    top: -20px;
-    color: var(--tbp-secondary);
-    font-size: 9px;
-    font-weight: 700;
-    white-space: nowrap;
-}
-
-.trend-bar-track {
-    width: min(34px, 65%);
-    height: 88%;
-    display: flex;
-    align-items: flex-end;
-}
-
-.trend-bar {
-    width: 100%;
-    min-height: 8px;
-    border-radius: 8px 8px 3px 3px;
-    background: linear-gradient(180deg, var(--tbp-gold), var(--tbp-green));
-    transition: height 0.45s ease;
-}
-
-.trend-column > span {
-    position: absolute;
-    bottom: -29px;
-    max-width: 75px;
-    overflow: hidden;
-    color: var(--tbp-muted);
-    font-size: 9px;
-    text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-@media (max-width: 900px) {
-    .analytics-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 650px) {
-    .analytics-card {
-        padding: 20px;
-    }
-
-    .donut-layout {
-        grid-template-columns: 1fr;
-        gap: 22px;
-    }
-
-    .expense-donut {
-        width: 165px;
-        height: 165px;
-    }
-
-    .donut-legend {
-        max-height: none;
-    }
-
-    .trend-chart {
-        grid-template-columns: 52px minmax(0, 1fr);
-    }
-
-    .trend-bars {
-        gap: 4px;
-    }
-
-    .trend-column {
-        min-width: 24px;
-    }
-
-    .trend-value {
-        display: none;
-    }
-
-    .trend-bar-track {
-        width: min(26px, 60%);
-    }
-}
-
-@media (max-width: 400px) {
-    .planned-actual-total {
-        grid-template-columns: 1fr;
-    }
-
-    .trend-chart {
-        grid-template-columns: 45px minmax(0, 1fr);
-    }
-}
-/* =========================================
-   SPENDING TREND CHART
-========================================= */
-
-.spending-trend-card {
-    overflow: hidden;
-}
-
-.trend-chart {
-    display: grid;
-    grid-template-columns: 80px minmax(0, 1fr);
-    gap: 18px;
-    width: 100%;
-    min-height: 350px;
-    margin-top: 18px;
-}
-
-/* Y-axis labels */
-
-.trend-y-labels {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    height: 300px;
-    padding: 2px 0 34px;
-
-    color: var(--tbp-secondary);
-    font-size: 12px;
-    text-align: right;
-}
-
-/* Chart area */
-
-.trend-visual {
-    position: relative;
-
-    height: 300px;
-
-    border-bottom: 1px solid var(--tbp-border);
-}
-
-/* Horizontal grid lines */
-
-.trend-grid-line {
-    position: absolute;
-    left: 0;
-    right: 0;
-
-    border-top: 1px dashed #D9D6CE;
-
-    pointer-events: none;
-}
-
-.trend-grid-line.top {
-    top: 0;
-}
-
-.trend-grid-line.middle {
-    top: 50%;
-}
-
-.trend-grid-line.bottom {
-    bottom: 0;
-
-    border-top: 1px solid var(--tbp-border);
-}
-
-/* Bars container */
-
-.trend-bars {
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    align-items: stretch;
-    justify-content: space-around;
-
-    gap: 35px;
-
-    padding: 0 45px;
-}
-
-/* Individual column */
-
-.trend-column {
-    position: relative;
-
-    display: flex;
-    flex: 1;
-    min-width: 70px;
-
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-
-    height: 100%;
-}
-
-/* Bar value */
-
-.trend-value {
-    position: absolute;
-    bottom: calc(var(--bar-height, 0%) + 34px);
-
-    color: var(--tbp-secondary);
-
+    gap: 7px;
+    min-height: 36px;
+    padding: 0 13px;
+    border: 1px solid #E2C4C4;
+    border-radius: 8px;
+    background: #FFF8F8;
+    color: #9A4D4D;
+    font-family: inherit;
     font-size: 12px;
     font-weight: 700;
-
-    white-space: nowrap;
-}
-
-/* Bar background/track */
-
-.trend-bar-track {
-    position: relative;
-
-    display: flex;
-    align-items: flex-end;
-
-    width: 54px;
-    height: 250px;
-
-    border-radius: 8px 8px 0 0;
-}
-
-/* Actual bar */
-
-.trend-bar {
-    position: relative;
-
-    width: 100%;
-
-    min-height: 8px;
-
-    border-radius: 8px 8px 3px 3px;
-
-    background: var(--tbp-green);
-
-    box-shadow:
-        0 3px 8px rgba(47, 107, 95, 0.16);
-
+    cursor: pointer;
     transition:
-        height 0.45s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
-/* Small gold top edge */
-
-.trend-bar::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 5px;
-
-    border-radius: 8px 8px 0 0;
-
-    background: var(--tbp-gold);
+.cancel-trip-button:hover {
+    background: #FCECEC;
+    border-color: #D9A8A8;
+    color: #813D3D;
+    transform: translateY(-1px);
 }
 
-/* Hover */
-
-.trend-column:hover .trend-bar {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 6px 14px rgba(47, 107, 95, 0.20);
+.cancel-trip-button:active {
+    transform: translateY(0);
 }
 
-.trend-column:hover .trend-value {
-    color: var(--tbp-dark);
-}
-
-/* Date label */
-
-.trend-date {
-    margin-top: 14px;
-
-    color: var(--tbp-secondary);
-
-    font-size: 12px;
-    font-weight: 600;
-
-    white-space: nowrap;
-}
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
-@media (max-width: 700px) {
-
-    .trend-chart {
-        grid-template-columns: 55px minmax(0, 1fr);
-        gap: 10px;
-    }
-
-    .trend-bars {
-        gap: 20px;
-        padding: 0 20px;
-    }
-
-    .trend-bar-track {
-        width: 42px;
-    }
-
-    .trend-y-labels {
-        font-size: 11px;
-    }
-
-    .trend-date {
-        font-size: 11px;
-    }
-
-    .trend-value {
-        font-size: 11px;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .trend-chart {
-        grid-template-columns: 48px minmax(0, 1fr);
-        gap: 7px;
-    }
-
-    .trend-bars {
-        gap: 14px;
-        padding: 0 10px;
-    }
-
-    .trend-bar-track {
-        width: 34px;
-    }
-
-    .trend-value {
-        font-size: 10px;
-    }
-
-    .trend-date {
-        font-size: 10px;
-    }
+.cancel-trip-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
 }

@@ -113,3 +113,39 @@ VALUES
     ('Local Transport', 'Taxi, bus, metro, rental vehicle and local transportation'),
 
     ('Other', 'Other miscellaneous expenses');
+CREATE TABLE IF NOT EXISTS trip_budget_estimates (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    trip_id INT NOT NULL,
+
+    plan VARCHAR(30) NOT NULL,
+    api_budget_level VARCHAR(30) NOT NULL,
+    cost_estimate_id VARCHAR(100),
+
+    estimated_total DECIMAL(12, 2) NOT NULL DEFAULT 0,
+
+    travel_amount DECIMAL(12, 2) NOT NULL DEFAULT 0,
+    hotel_amount DECIMAL(12, 2) NOT NULL DEFAULT 0,
+    food_amount DECIMAL(12, 2) NOT NULL DEFAULT 0,
+    shopping_amount DECIMAL(12, 2) NOT NULL DEFAULT 0,
+    activities_amount DECIMAL(12, 2) NOT NULL DEFAULT 0,
+    local_transport_amount DECIMAL(12, 2) NOT NULL DEFAULT 0,
+    other_amount DECIMAL(12, 2) NOT NULL DEFAULT 0,
+
+    travel_description TEXT,
+    hotel_description TEXT,
+    food_description TEXT,
+    shopping_description TEXT,
+    activities_description TEXT,
+    local_transport_description TEXT,
+    other_description TEXT,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_budget_estimate_trip
+        FOREIGN KEY (trip_id)
+        REFERENCES trips(id)
+        ON DELETE CASCADE
+);
