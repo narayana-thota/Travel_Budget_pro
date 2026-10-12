@@ -25,14 +25,12 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
-app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(
-    minutes=30
-)
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=30)
 
 # Session cookie configuration
 app.config["SESSION_COOKIE_HTTPONLY"] = True
-app.config["SESSION_COOKIE_SECURE"] = False
-app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["SESSION_COOKIE_SECURE"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "None"
 
 
 # --------------------------------------------------
@@ -41,7 +39,11 @@ app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 
 CORS(
     app,
-    origins=["https://travel-budget-pro.netlify.app/"],
+    resources={
+        r"/api/*": {
+            "origins": ["https://travel-budget-pro.netlify.app"]
+        }
+    },
     supports_credentials=True
 )
 
