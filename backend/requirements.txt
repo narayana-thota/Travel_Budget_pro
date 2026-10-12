@@ -2,6 +2,6 @@ Flask==3.1.0
 flask-cors==6.0.5
 mysql-connector-python==26.7.0
 python-dotenv==1.2.1
-pandas==2.2.1
+pandas==2.2.3
 gunicorn==26.2.0
 requests==2.31.0
