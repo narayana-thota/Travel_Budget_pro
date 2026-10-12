@@ -4,26 +4,7 @@ from config.database import get_db_connection
 
 auth_bp = Blueprint("auth", __name__)
 
-@auth_bp.route("/api/me", methods=["GET"])
-def get_current_user():
 
-    user_id = session.get("user_id")
-
-    if not user_id:
-        return jsonify({
-            "status": "error",
-            "message": "User is not logged in."
-        }), 401
-
-    return jsonify({
-        "status": "success",
-        "message": "User is logged in.",
-        "user": {
-            "id": session.get("user_id"),
-            "full_name": session.get("full_name"),
-            "email": session.get("email")
-        }
-    }), 200
 
 @auth_bp.route("/api/register", methods=["POST"])
 def register():
@@ -219,4 +200,24 @@ def logout():
     return jsonify({
         "status": "success",
         "message": "Logout successful!"
+    }), 200
+@auth_bp.route("/api/me", methods=["GET"])
+def get_current_user():
+
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({
+            "status": "error",
+            "message": "User is not logged in."
+        }), 401
+
+    return jsonify({
+        "status": "success",
+        "message": "User is logged in.",
+        "user": {
+            "id": session.get("user_id"),
+            "full_name": session.get("full_name"),
+            "email": session.get("email")
+        }
     }), 200
