@@ -41,7 +41,7 @@ app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 
 CORS(
     app,
-    origins=["http://localhost:5173"],
+    origins=["https://travel-budget-pro.netlify.app/"],
     supports_credentials=True
 )
 
