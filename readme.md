@@ -1,9 +1,11 @@
 
 <p align="center">
-  <img src="frontend/public/travel-budget-logo.svg" alt="Travel Budget Pro Logo" width="320">
+  <img
+    src="frontend/public/travel-budget-logo.svg"
+    alt="Travel Budget Pro"
+    width="320"
+  />
 </p>
-
-<h1 align="center">Travel Budget Pro</h1>
 
 <p align="center">
   <strong>Plan trips without financial surprises.</strong>
@@ -18,6 +20,7 @@
 </p>
 
 ---
+
 
 ## ✨ Features
 
